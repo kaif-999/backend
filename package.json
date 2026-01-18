@@ -4,7 +4,7 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mongoose": "^8.19.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.11"
   },
   "name": "crud",
   "version": "1.0.0",
