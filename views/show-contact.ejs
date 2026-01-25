@@ -5,14 +5,16 @@
     <div class="card shadow">
       <div class="card-body">
         <h5 class="card-title">John Doe</h5>
-        <p><strong>Email:</strong> john@example.com</p>
-        <p><strong>Phone:</strong> 123-456-7890</p>
-        <p><strong>Address:</strong> 123 Main Street, New York, USA</p>
+        <p><strong>First Name:</strong> <%= contact.first_name %></p>
+        <p><strong>last Name:</strong>  <%= contact.last_name %></p>
+        <p><strong>Email:</strong>  <%= contact.email %></p>
+        <p><strong>Phone:</strong> <%= contact.phone %></p>
+        <p><strong>Address:</strong>  <%= contact.address %></p>
         
         <div class="mt-3">
-          <a href="/views/update-contact.ejs" class="btn btn-primary">Edit</a>
+          <a href="/update-contact/<%= contact.id %>" class="btn btn-primary">Edit</a>
           <a href="/" class="btn btn-secondary">Back</a>
-          <button class="btn btn-danger"><a href="/delete-contact">Delete</a></button>
+          <button class="btn btn-danger"><a href="/delete-contact/<%= contact.id %>">Delete</a></button>
         </div>
       </div>
     </div>

@@ -1,33 +1,78 @@
-<%-  include('partials/header.ejs')    %>
+<%- include('partials/header.ejs') %>
 
-  
+<!-- Main Content -->
+<div class="container mt-5">
+  <h2 class="mb-4">Update Contact</h2>
 
-  <!-- Main Content -->
-  <div class="container mt-5">
-    <h2 class="mb-4">Update Contact</h2>
-    <form>
-      <div class="mb-3">
-        <label for="firstName" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstName" value="John" required>
-      </div>
+  <!-- The form action sends a POST request to /update-contact/:id -->
+  <form action="/update-contact/<%= contact._id %>" method="post">
+    
+    <!-- Hidden field to include contact ID -->
+    <input type="hidden" name="_id" value="<%= contact._id %>">
 
-      <div class="mb-3">
-        <label for="lastName" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastName" value="Doe" required>
-      </div>
+    <div class="mb-3">
+      <label for="first_name" class="form-label">First Name</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="first_name" 
+        name="first_name" 
+        value="<%= contact.first_name %>" 
+        required
+      >
+    </div>
 
-      <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" value="john@example.com" required>
-      </div>
+    <div class="mb-3">
+      <label for="last_name" class="form-label">Last Name</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="last_name" 
+        name="last_name" 
+        value="<%= contact.last_name %>" 
+        required
+      >
+    </div>
 
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone</label>
-        <input type="tel" class="form-control" id="phone" value="123-456-7890" required>
-      </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input 
+        type="email" 
+        class="form-control" 
+        id="email" 
+        name="email" 
+        value="<%= contact.email %>" 
+        required
+      >
+    </div>
 
-      <button type="submit" class="btn btn-primary">Update Contact</button>
-      <a href="/" class="btn btn-secondary">Cancel</a>
-    </form>
-  </div>
-<%-  include('partials/footer.ejs')    %>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input 
+        type="tel" 
+        class="form-control" 
+        id="phone" 
+        name="phone" 
+        value="<%= contact.phone %>" 
+        required
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="address" 
+        name="address" 
+        value="<%= contact.address %>" 
+        required
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Contact</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+
+<%- include('partials/footer.ejs') %>
