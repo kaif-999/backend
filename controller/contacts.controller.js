@@ -9,11 +9,18 @@ export  const getContacts = async (req,res) => {
 export  const getContact = async (req,res) => { 
 
     if (!mongoose.Types.ObjectId.isValid(req.params.id)){
-        res.render('404',{message:"Contact Not Found! "})
+        res.render('404',{message:"Invalid Id! "})
     }
 
-    const contact = await Contact.findById(req.params.id )
-    res.render('show-contact',{contact})
+    try{
+        const contact = await Contact.findById(req.params.id )
+    if(!contact) return res.render('404',{message:"Conatct not Found"})    
+    res.render('show-contact',{contact})}
+    catch(error){
+ res.render('500',{message: error})
+    }
+
+    
     }
 
 export const addContactPage = (req,res) =>{ 
@@ -26,17 +33,40 @@ export const addContactPage = (req,res) =>{
 
 
 export const updateContactPage = async(req,res) => { 
-    const contact = await Contact.findById(req.params.id)
-    res.render('update-contact',{contact})   
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)){
+        res.render('404',{message:"Invalid Id! "})
+    }
+    try{
+ const contact = await Contact.findById(req.params.id)
+ if(!contact) return res.render('404',{message:"Conatct not Found"})   
+ res.render('update-contact',{contact})   
+
+    }catch(error){
+ res.render('500',{message: error})
+
+    }
+   
 }
 
 export const updateContact = async(req,res)=>{
-const {first_name, last_name, email, phone, address} = req.body
-await Contact.findByIdAndUpdate(req.params.id, {first_name, last_name, email, phone, address})
-res.redirect("/")
+
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)){
+        res.render('404',{message:"Invalid Id! "})
+    }
+
+    await Contact.findByIdAndUpdate(req.params.id,req.body)
+    res.redirect("/")
+// const {first_name, last_name, email, phone, address} = req.body
+// await Contact.findByIdAndUpdate(req.params.id, {first_name, last_name, email, phone, address})
+// res.redirect("/")
  }
 
 export const deleteContact = async(req,res)=>{ 
+
+if (!mongoose.Types.ObjectId.isValid(req.params.id)){
+        res.render('404',{message:"Invalid Id! "})
+    }
+
 await Contact.findByIdAndDelete(req.params.id)
 res.redirect("/")   
 }
